@@ -28,8 +28,9 @@ class BeakerSessionInterface(SessionInterface):
         session.save()
 
 class BeakerSession(object):
-    def __init__(self, session_opts):
-        self.session_opts = session_opts
+    def __init__(self, app=None):
+        if app is not None:
+            self.init_app(app)
     
     def init_app(self, app):
         '''Initalizes the application with the extension.
