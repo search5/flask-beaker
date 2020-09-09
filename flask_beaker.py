@@ -6,13 +6,16 @@
     
     :copyright: (c) 2012 by Syrus Akbary.
     :license: MIT, see LICENSE for more details.
+
+    :copyright: (c) 2020 by Jiho Lee.
+    :license: MIT, see LICENSE for more details.
 '''
 
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 try:
     from beaker.middleware import SessionMiddleware
-except ImportError, e:
-    print 'Beaker package is required to use Flask-Beaker'
+except ImportError as e:
+    print('Beaker package is required to use Flask-Beaker')
     raise e
 
 from flask.sessions import SessionInterface
@@ -25,9 +28,8 @@ class BeakerSessionInterface(SessionInterface):
         session.save()
 
 class BeakerSession(object):
-    def __init__(self, app=None):
-        if app is not None:
-            self.init_app(app)
+    def __init__(self, session_opts):
+        self.session_opts = session_opts
     
     def init_app(self, app):
         '''Initalizes the application with the extension.
